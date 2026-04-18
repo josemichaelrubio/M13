@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class MaxHeap {
     private int[] heap;
     private int size;
@@ -43,5 +45,36 @@ public class MaxHeap {
             // Update the current index to the parent's index to continue checking upward
             index = parentIndex;
         }
+    }
+
+    // Helper method to print the current state of the heap
+    public void printHeap() {
+        // We only print up to 'size' so we don't see the empty capacity slots
+        int[] currentHeap = Arrays.copyOfRange(heap, 0, size);
+        System.out.println(Arrays.toString(currentHeap));
+    }
+
+    // --- MAIN METHOD ---
+    public static void main(String[] args) {
+        // Create a MaxHeap with a capacity of 10
+        MaxHeap myHeap = new MaxHeap(10);
+
+        System.out.println("Building the initial heap...");
+        myHeap.insert(50);
+        myHeap.insert(30);
+        myHeap.insert(20);
+        myHeap.insert(15);
+        myHeap.insert(10);
+        
+        System.out.print("Current Heap array: ");
+        myHeap.printHeap(); 
+        // Expected output: [50, 30, 20, 15, 10]
+
+        System.out.println("\nInserting 60 into the heap...");
+        myHeap.insert(60);
+        
+        System.out.print("New Heap array:     ");
+        myHeap.printHeap(); 
+        // Expected output: [60, 30, 50, 15, 10, 20]
     }
 }
